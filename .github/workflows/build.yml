@@ -1,0 +1,30 @@
+name: 一键自动编译 APK
+
+on:
+  workflow_dispatch: # 允许手动在网页上一键触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 下载项目源码
+        uses: actions/checkout@v4
+
+      - name: 安装配置 Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: 赋予编译脚本执行权限
+        run: chmod +x gradlew
+
+      - name: 开始云端编译 APK
+        run: ./gradlew assembleDebug --no-daemon --stacktrace
+
+      - name: 打包并提供下载链接
+        uses: actions/upload-artifact@v4
+        with:
+          name: 伪DC调光-适配版
+          path: app/build/outputs/apk/debug/*.apk
