@@ -5,8 +5,8 @@
     <application
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        >
+        android:theme="@style/AppTheme">
+
         <activity
             android:name=".SettingsActivity"
             android:exported="true"
@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
 
+        <!-- Xposed 标准且唯一的配置项 -->
         <meta-data
             android:name="xposedmodule"
             android:value="true" />
@@ -28,18 +29,12 @@
             android:name="xposedminversion"
             android:value="93" />
         <meta-data
-            android:name="xposedscope"
-            android:resource="@array/xposed_scope" />
-        <!-- 消除 legacy 废弃警告的核心声明 -->
-        <meta-data
-            android:name="xposedminversion"
-            android:value="101" />
-        <meta-data
-            android:name="xposedtargetversion"
-            android:value="102" />
-        <meta-data
             android:name="xposedsharedprefs"
             android:value="true" />
+        <meta-data
+            android:name="xposedscope"
+            android:resource="@array/xposed_scope" />
+
     </application>
 
 </manifest>
